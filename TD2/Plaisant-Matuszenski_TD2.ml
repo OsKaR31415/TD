@@ -1,13 +1,24 @@
 
 (* TD2 Types enumeres *)
 
+ (* ⡏⢱ ⣏⡉ ⣏⡉ ⡇ ⡷⣸ ⡇ ⢹⠁ ⡇ ⡎⢱ ⡷⣸   ⡏⢱ ⣏⡉ ⢎⡑   ⢹⠁ ⢇⢸ ⣏⡱ ⣏⡉ ⢎⡑ *)
+ (* ⠧⠜ ⠧⠤ ⠇  ⠇ ⠇⠹ ⠇ ⠸  ⠇ ⠣⠜ ⠇⠹   ⠧⠜ ⠧⠤ ⠢⠜   ⠸   ⠇ ⠇  ⠧⠤ ⠢⠜ *)
+(* définis au début pour éviter les conflits lors de la compilation *)
+
+(* definition of a *frac* (fraction with a numerator and a denominator) *)
+type frac = { num : int; denom : int };;
+
+(* definition of a *number* including rational numbers *)
+type number = Integer of int | Real of float | Rational of frac;;
+
+
+
+
 
 (* ╺┓          ┏┓╻┏━┓┏┳┓┏┓ ┏━┓┏━╸┏━┓   ┏━╸┏━╸┏┓╻┏━╸┏━┓╻┏━┓╻ ╻┏━╸┏━┓ *)
 (*  ┃    ╺━╸   ┃┗┫┃ ┃┃┃┃┣┻┓┣┳┛┣╸ ┗━┓   ┃╺┓┣╸ ┃┗┫┣╸ ┣┳┛┃┃┓┃┃ ┃┣╸ ┗━┓ *)
 (* ╺┻╸         ╹ ╹┗━┛╹ ╹┗━┛╹┗╸┗━╸┗━┛   ┗━┛┗━╸╹ ╹┗━╸╹┗╸╹┗┻┛┗━┛┗━╸┗━┛ *)
 
-(* definition of the *number* type *)
-type number = Integer of int | Real of float;;
 
  (* ⣏⡉ ⢇⡸ ⣏⡉ ⣏⡱ ⡎⠑ ⡇ ⡎⠑ ⣏⡉   ⢺    ⢺  *)
  (* ⠧⠤ ⠇⠸ ⠧⠤ ⠇⠱ ⠣⠔ ⠇ ⠣⠔ ⠧⠤   ⠼⠄ ⠶ ⠼⠄ *)
@@ -51,10 +62,6 @@ add_numbers (Real 42.)   (Real 73.)  = Real(115.);;
  (* ⣏⡉ ⢇⡸ ⣏⡉ ⣏⡱ ⡎⠑ ⡇ ⡎⠑ ⣏⡉   ⢺    ⢉⡹ *)
  (* ⠧⠤ ⠇⠸ ⠧⠤ ⠇⠱ ⠣⠔ ⠇ ⠣⠔ ⠧⠤   ⠼⠄ ⠶ ⠤⠜ *)
 
-(* definition of a *frac* (fraction with a numerator and a denominator) *)
-type frac = { num : int; denom : int };;
-
-
 (* conversion of a *frac* to a *float* *)
 let float_of_frac (fraction: frac) : float =
     (float_of_int fraction.num) /. (float_of_int fraction.denom);;
@@ -87,9 +94,6 @@ add_fracs {num=5; denom=2} {num=4; denom=2} = {num=18; denom=4};;
 
  (* ⣏⡉ ⢇⡸ ⣏⡉ ⣏⡱ ⡎⠑ ⡇ ⡎⠑ ⣏⡉   ⢺    ⣏⡉ *)
  (* ⠧⠤ ⠇⠸ ⠧⠤ ⠇⠱ ⠣⠔ ⠇ ⠣⠔ ⠧⠤   ⠼⠄ ⠶ ⠤⠜ *)
-
-(* re-definition of a *number* including rational numbers *)
-type number = Integer of int | Real of float | Rational of frac;;
 
 (* conversion of a *number* into a *float* *)
 let float_of_number (n: number): float =
