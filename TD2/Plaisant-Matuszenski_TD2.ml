@@ -71,7 +71,7 @@ float_of_frac {num=5; denom=2} = 2.5;;
  (* ⣏⡉ ⢇⡸ ⣏⡉ ⣏⡱ ⡎⠑ ⡇ ⡎⠑ ⣏⡉   ⢺    ⢇⣸ *)
  (* ⠧⠤ ⠇⠸ ⠧⠤ ⠇⠱ ⠣⠔ ⠇ ⠣⠔ ⠧⠤   ⠼⠄ ⠶  ⠸ *)
 
-(* adding two *frac* together (makes a new *frac*) (not reduced) *)
+(* adding two *frac* together ( makes a new *frac* ) (not reduced) *)
 let add_fracs (f1 : frac) (f2: frac) : frac =
     {num = f1.num*f2.denom + f1.denom*f2.num; denom = f1.denom*f2.denom};;
 
