@@ -31,10 +31,10 @@ let float_of_number (n: number): float =
 
 
 (* unit tests *)
-float_of_number (Integer 0)   ;;
-float_of_number (Real 0.)  ;;
-float_of_number (Integer 10)  ;;
-float_of_number (Real 10.) ;;
+assert (float_of_number (Integer 0) = 0.);;
+assert (float_of_number (Real 0.) = 0.);;
+assert (float_of_number (Integer 10) = 10.);;
+assert (float_of_number (Real 10.) = 10.);;
 
 
 
@@ -51,10 +51,10 @@ let add_numbers (n: number) (p: number) : number =
         | (Real (n_: float), Real (p_: float)) -> Real(n_ +. p_);;
 
 (* unit tests *)
-add_numbers (Integer 0)  (Integer 0) = Integer(0);;
-add_numbers (Integer 42) (Real 0.)   = Real(42.);;
-add_numbers (Real 7.)    (Integer 0) = Real(7.);;
-add_numbers (Real 42.)   (Real 73.)  = Real(115.);;
+assert (add_numbers (Integer 0)  (Integer 0) = Integer(0));;
+assert (add_numbers (Integer 42) (Real 0.)   = Real(42.));;
+assert (add_numbers (Real 7.)    (Integer 0) = Real(7.));;
+assert (add_numbers (Real 42.)   (Real 73.)  = Real(115.));;
 
 
 
@@ -67,10 +67,10 @@ let float_of_frac (fraction: frac) : float =
     (float_of_int fraction.num) /. (float_of_int fraction.denom);;
 
 (* unit tests *)
-float_of_frac {num=4; denom=2} = 2.;;
-float_of_frac {num=7; denom=7} = 1.;;
-float_of_frac {num=5; denom=0} = infinity;; (* ça fait mal à nos maths ;( *)
-float_of_frac {num=5; denom=2} = 2.5;;
+assert (float_of_frac {num=4; denom=2} = 2.);;
+assert (float_of_frac {num=7; denom=7} = 1.);;
+assert (float_of_frac {num=5; denom=0} = infinity);; (* ça fait mal à nos maths ;( *)
+assert (float_of_frac {num=5; denom=2} = 2.5);;
 
 
 
@@ -84,10 +84,10 @@ let add_fracs (f1 : frac) (f2: frac) : frac =
 
 
 (* unit tests *)
-add_fracs {num=4; denom=2} {num=7; denom=7} = {num=42; denom=14};;
-add_fracs {num=7; denom=7} {num=2; denom=4} = {num=42; denom=28};;
-add_fracs {num=0; denom=6} {num=4; denom=2} = {num=24; denom=12};;
-add_fracs {num=5; denom=2} {num=4; denom=2} = {num=18; denom=4};;
+assert (add_fracs {num=4; denom=2} {num=7; denom=7} = {num=42; denom=14});;
+assert (add_fracs {num=7; denom=7} {num=2; denom=4} = {num=42; denom=28});;
+assert (add_fracs {num=0; denom=6} {num=4; denom=2} = {num=24; denom=12});;
+assert (add_fracs {num=5; denom=2} {num=4; denom=2} = {num=18; denom=4});;
 
 
 
@@ -103,10 +103,10 @@ let float_of_number (n: number): float =
         | Rational (c: frac) -> float_of_frac c;;
 
 (* unit tests *)
-float_of_number (Integer 5) = 5.;;
-float_of_number (Real 7.3) = 7.3;;
-float_of_number (Rational {num=10; denom=5}) = 2.;;
-float_of_number (Rational {num=9; denom=5}) = 1.8;;
+assert (float_of_number (Integer 5) = 5.);;
+assert (float_of_number (Real 7.3) = 7.3);;
+assert (float_of_number (Rational {num=10; denom=5}) = 2.);;
+assert (float_of_number (Rational {num=9; denom=5}) = 1.8);;
 
 (* re-definition of adding two *number* together *)
 (* cases are divided. first the type of n is tested, then the type of p *)
@@ -126,15 +126,15 @@ let add_numbers (n: number) (p: number) : number =
             | Rational(p_: frac) -> Real((float_of_frac n_) +. (float_of_frac p_)));;
 
 (* unit tests *)
-add_numbers (Integer 1) (Integer 2) = (Integer 3);;
-add_numbers (Integer 1) (Real 0.5) = (Real 1.5);;
-add_numbers (Integer 1) (Rational {num=1; denom=2}) = (Real 1.5);;
-add_numbers (Real 0.5)  (Integer 1) = (Real 1.5);;
-add_numbers (Real 1.25) (Real 0.25) = (Real 1.5);;
-add_numbers (Real 1.25) (Rational {num=1; denom=4}) = (Real 1.5);;
-add_numbers (Rational {num=1; denom=2}) (Integer 1) = (Real 1.5);;
-add_numbers (Rational {num=5; denom=4}) (Real 0.25) = (Real 1.5);;
-add_numbers (Rational {num=5; denom=4}) (Rational {num=1; denom=4}) = (Real 1.5);;
+assert (add_numbers (Integer 1) (Integer 2) = (Integer 3));;
+assert (add_numbers (Integer 1) (Real 0.5) = (Real 1.5));;
+assert (add_numbers (Integer 1) (Rational {num=1; denom=2}) = (Real 1.5));;
+assert (add_numbers (Real 0.5)  (Integer 1) = (Real 1.5));;
+assert (add_numbers (Real 1.25) (Real 0.25) = (Real 1.5));;
+assert (add_numbers (Real 1.25) (Rational {num=1; denom=4}) = (Real 1.5));;
+assert (add_numbers (Rational {num=1; denom=2}) (Integer 1) = (Real 1.5));;
+assert (add_numbers (Rational {num=5; denom=4}) (Real 0.25) = (Real 1.5));;
+assert (add_numbers (Rational {num=5; denom=4}) (Rational {num=1; denom=4}) = (Real 1.5));;
 
 
 
@@ -161,9 +161,9 @@ let next_light (light: trafficLight): trafficLight =
     | RedLight -> GreenLight;;
 
 (* unit tests *)
-next_light GreenLight = OrangeLight;;
-next_light OrangeLight = RedLight;;
-next_light RedLight = GreenLight;;
+assert (next_light GreenLight = OrangeLight);;
+assert (next_light OrangeLight = RedLight);;
+assert (next_light RedLight = GreenLight);;
 
 
 
@@ -179,9 +179,9 @@ let light_time (light: trafficLight): int =
     | RedLight -> 40;;
 
 (* the code is kind of obvious, but here are some tests *)
-light_time GreenLight = 50;;
-light_time OrangeLight = 10;;
-light_time RedLight = 40;;
+assert (light_time GreenLight = 50);;
+assert (light_time OrangeLight = 10);;
+assert (light_time RedLight = 40);;
 
 
 
@@ -206,9 +206,9 @@ let traffic_step (current_timer: trafficTimer): trafficTimer =
     };;
 
 (* unit tests *)
-traffic_step {light=OrangeLight; remaining_time=9} = {light=OrangeLight; remaining_time=8};;
-traffic_step {light=RedLight; remaining_time=0} = {light=GreenLight; remaining_time=50};;
-traffic_step {light=GreenLight; remaining_time=34} = {light=GreenLight; remaining_time=33};;
+assert (traffic_step {light=OrangeLight; remaining_time=9} = {light=OrangeLight; remaining_time=8});;
+assert (traffic_step {light=RedLight; remaining_time=0} = {light=GreenLight; remaining_time=50});;
+assert (traffic_step {light=GreenLight; remaining_time=34} = {light=GreenLight; remaining_time=33});;
 
 
 
@@ -226,8 +226,8 @@ let rec traffic_next (s: trafficTimer) (n: int) =
 (* unit tests *)
 (* since this one depends on *traffic_step* the unit tests are only covering
    the part not covered by the *traffic_step* ones *)
-traffic_next {light=OrangeLight; remaining_time=9} 15 = {light=RedLight; remaining_time=15};;
-traffic_next {light=GreenLight; remaining_time=5} 45 = {light=RedLight; remaining_time=12};;
+assert ((traffic_next {light=OrangeLight; remaining_time=9} 15) = {light = RedLight; remaining_time = 35});;
+assert (traffic_next {light=GreenLight; remaining_time=5} 45 = {light=RedLight; remaining_time=12});;
 
 
 
